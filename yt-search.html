@@ -24,10 +24,15 @@ license that can be found in the LICENSE file.
           this.serviceQuery = this.query;
         } else {
           this.list = null;
+          this.fireResults();
         }
       },
       responseChanged: function() {
         this.list = this.response && this.response.feed.entry;
+        this.fireResults();
+      },
+      fireResults: function() {
+        this.fire('yt-search-result', {list: this.list});
       }
     });
   </script>
